@@ -98,7 +98,7 @@ def num_check(number: Optional[ str]=None):
     try:
         number_int = int(number)
     except ValueError:
-        return JSONResponse(content={"error": True , "number": number},status_code=400)
+        return JSONResponse(content={ "number": number, "error": True },status_code=400)
 
     # Fetch fun fact about the number from Numbers API
     try:

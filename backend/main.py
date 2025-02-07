@@ -7,6 +7,10 @@ import logging
 import math
 import os
 from fastapi.staticfiles import StaticFiles
+from mangum import Mangum
+
+
+
 
 logging.basicConfig(level=logging.INFO)
 
@@ -112,3 +116,6 @@ def num_check(number: Optional[ str]=None):
             return JSONResponse({"error":True},status_code=400)
     except requests.exceptions.RequestException:
             return JSONResponse(content={"error": True},status_code=400 )
+    
+# Create the Lambda handler
+handler = Mangum(app)

@@ -64,7 +64,7 @@ def digit_sum(n:int):
 
 def perfect_number(n:int):
     #Check if a number is a perfect .
-    if n < 0:
+    if n < 2:
         return False
     sum_divisor = 1
     for i in range (2, int(n**0.5)+1):
@@ -98,7 +98,7 @@ def num_check(number: Optional[ str]=None):
     try:
         number_int = int(number)
     except ValueError:
-        return JSONResponse(content={"number": number, "error": True},status_code=400)
+        return JSONResponse(content={"error": True , "number": number},status_code=400)
 
     # Fetch fun fact about the number from Numbers API
     try:

@@ -35,12 +35,21 @@ Output:
 
 ## Deploying to AWS Lamda and APIGateWay
 
-```powershell
+- [x] Package your deployment file for AWS using the command
 
+```powershell
+mkdir awslamdapackage
 pip install -r requirements.txt -t awslamdapackage
 cp -r backend awslamdapackage
+cp -r frontend awslamdapackage
 cd  awslamdapackage
 Compress-Archive -Path .\* -DestinationPath ..\awslamdapackage -Force
 
 ```
 
+
+![alt text](image-2.png)
+
+Connectubg to API Gateway
+Choose HTTP API
+adde Name 

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HNG12 Number Classifier</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        input { padding: 10px; margin: 10px; }
+        button { padding: 10px 20px; }
+        #result { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Number Classifier</h1>
+    <input type="text" id="numberInput" placeholder="Enter a number">
+    <button onclick="classifyNumber()">Classify</button>
+    <div id="result"></div>
+
+    <script>
+        function classifyNumber() {
+            const number = document.getElementById('numberInput').value;
+            fetch(`http://localhost:8000/api/classify-number?number=${number}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        document.getElementById('result').innerHTML = 'Invalid number!';
+                    } else {
+                        document.getElementById('result').innerHTML = `
+                            <p>Number: ${data.number}</p>
+                            <p>Is Prime: ${data.is_prime}</p>
+                            <p>Is Perfect: ${data.is_perfect}</p>
+                            <p>Properties: ${data.properties.join(", ")}</p>
+                            <p>Digit Sum: ${data.digit_sum}</p>
+                            <p>Fun Fact: ${data.fun_fact}</p>
+                        `;
+                    }
+                })
+                .catch(() => document.getElementById('result').innerHTML = 'Error fetching data.');
+        }
+    </script>
+</body>
+</html>
